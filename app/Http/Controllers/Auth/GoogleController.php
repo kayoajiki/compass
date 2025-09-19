@@ -47,7 +47,8 @@ class GoogleController extends Controller
             if ($user->hasCompletedProfile()) {
                 return redirect()->route('dashboard');
             } else {
-                return redirect()->route('profile.edit');
+                return redirect()->route('profile.edit')
+                    ->with('message', '出生情報を入力して、占いを始めましょう！');
             }
             
         } catch (\Exception $e) {

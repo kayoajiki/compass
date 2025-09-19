@@ -10,7 +10,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified', 'profile.completed'])
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
@@ -23,15 +23,39 @@ Route::middleware(['auth'])->group(function () {
     // プロフィール設定
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     
-    // 有料機能（サブスクリプション必要）
+    // カレンダー機能（Chart: 無料、Reading: 有料）
+    Route::get('calendar/chart', function () {
+        return view('calendar.chart');
+    })->name('calendar.chart');
+    
     Route::middleware(['subscription'])->group(function () {
-        Route::get('premium/calendar', function () {
-            return view('premium.calendar');
-        })->name('premium.calendar');
-        
-        Route::get('premium/compatibility', function () {
-            return view('premium.compatibility');
-        })->name('premium.compatibility');
+        Route::get('calendar/reading', function () {
+            return view('calendar.reading');
+        })->name('calendar.reading');
+    });
+    
+    // 相性占い機能（Chart: 無料、Reading: 有料）
+    Route::get('compatibility/chart', function () {
+        return view('compatibility.chart');
+    })->name('compatibility.chart');
+    
+    Route::middleware(['subscription'])->group(function () {
+        Route::get('compatibility/reading', function () {
+            return view('compatibility.reading');
+        })->name('compatibility.reading');
+    });
+
+    // 占術ページ（Chart: 無料、Reading: 有料）
+    Route::get('four-pillars/chart', \App\Livewire\Astrology\FourPillars\Chart::class)->name('four-pillars.chart');
+    Route::get('ziwei/chart', \App\Livewire\Astrology\ZiWei\Chart::class)->name('ziwei.chart');
+    Route::get('western/chart', \App\Livewire\Astrology\Western\Chart::class)->name('western.chart');
+    Route::get('numerology/chart', \App\Livewire\Astrology\Numerology\Chart::class)->name('numerology.chart');
+    
+    Route::middleware(['subscription'])->group(function () {
+        Route::get('four-pillars/reading', \App\Livewire\Astrology\FourPillars\Reading::class)->name('four-pillars.reading');
+        Route::get('ziwei/reading', \App\Livewire\Astrology\ZiWei\Reading::class)->name('ziwei.reading');
+        Route::get('western/reading', \App\Livewire\Astrology\Western\Reading::class)->name('western.reading');
+        Route::get('numerology/reading', \App\Livewire\Astrology\Numerology\Reading::class)->name('numerology.reading');
     });
 });
 
@@ -39,7 +63,19 @@ Route::middleware(['auth'])->group(function () {
 Route::get('auth/google', [App\Http\Controllers\Auth\GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [App\Http\Controllers\Auth\GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
-// 価格ページ
-Route::get('pricing', [App\Http\Controllers\PricingController::class, 'index'])->name('pricing');
+// サブスクリプション関連
+Route::get('pricing', [App\Http\Controllers\Web\SubscriptionController::class, 'plans'])->name('pricing');
+
+Route::middleware(['auth'])->group(function () {
+    // サブスクリプション管理
+    Route::post('subscription/checkout', [App\Http\Controllers\Web\SubscriptionController::class, 'checkout'])->name('subscription.checkout');
+    Route::post('subscription/cancel', [App\Http\Controllers\Web\SubscriptionController::class, 'cancel'])->name('subscription.cancel');
+    Route::post('subscription/resume', [App\Http\Controllers\Web\SubscriptionController::class, 'resume'])->name('subscription.resume');
+    Route::get('subscription/portal', [App\Http\Controllers\Web\SubscriptionController::class, 'portal'])->name('subscription.portal');
+    Route::get('subscription/status', [App\Http\Controllers\Web\SubscriptionController::class, 'status'])->name('subscription.status');
+});
+
+// Stripe Webhook
+Route::post('stripe/webhook', [App\Http\Controllers\Web\StripeWebhookController::class, 'handle'])->name('cashier.webhook');
 
 require __DIR__.'/auth.php';

@@ -18,11 +18,9 @@ return new class extends Migration
             // 核データ（変更不可）
             $table->string('name')->comment('氏名（変更不可）');
             $table->date('birth_date')->comment('生年月日（変更不可）');
-            $table->time('birth_time')->nullable()->comment('出生時刻');
-            $table->string('birth_place')->comment('出生地（都道府県）');
-            $table->decimal('longitude', 10, 7)->nullable()->comment('経度（補正用）');
-            $table->decimal('latitude', 10, 7)->nullable()->comment('緯度（補正用）');
-            $table->boolean('longitude_corrected')->default(false)->comment('経度補正済みフラグ');
+            $table->time('birth_time')->nullable()->comment('出生時刻（00:00-23:00）');
+            $table->string('birth_place_pref', 2)->comment('出生地都道府県コード（01-47）');
+            $table->boolean('longitude_adjust')->default(false)->comment('経度補正フラグ');
             
             // メタデータ
             $table->boolean('is_completed')->default(false)->comment('プロフィール完成フラグ');
@@ -32,6 +30,7 @@ return new class extends Migration
             
             // インデックス
             $table->index(['user_id', 'is_completed']);
+            $table->index('birth_place_pref');
         });
     }
 

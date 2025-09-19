@@ -43,94 +43,80 @@
         </div>
     @enderror
 
-    @if(!$is_editing)
-        <!-- Display Mode -->
-        <div class="space-y-4">
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">氏名</label>
-                    <div class="p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg border">
-                        <span class="text-gray-900 dark:text-white">{{ $name ?: '未入力' }}</span>
-                        @if($is_completed)
-                            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">（変更不可）</span>
-                        @endif
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">生年月日</label>
-                    <div class="p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg border">
-                        <span class="text-gray-900 dark:text-white">{{ $birth_date ? \Carbon\Carbon::parse($birth_date)->format('Y年m月d日') : '未入力' }}</span>
-                        @if($is_completed)
-                            <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">（変更不可）</span>
-                        @endif
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">出生時刻</label>
-                    <div class="p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg border">
-                        <span class="text-gray-900 dark:text-white">
-                            @if($is_birth_time_unknown)
-                                不明
-                            @else
-                                {{ $birth_time ?: '未入力' }}
-                            @endif
-                        </span>
-                    </div>
-                </div>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">出生地</label>
-                    <div class="p-3 bg-gray-50 dark:bg-zinc-800 rounded-lg border">
-                        <span class="text-gray-900 dark:text-white">{{ $this->getBirthPlaceName() ?: '未選択' }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="mt-6 flex justify-end">
-            @if(!$is_completed)
-                <button 
-                    wire:click="startEditing"
-                    class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                    編集する
-                </button>
-            @else
-                <button 
-                    wire:click="startEditing"
-                    class="border border-purple-600 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 px-6 py-2 rounded-lg text-sm font-medium transition-colors"
-                >
-                    出生時刻・出生地を編集
-                </button>
-            @endif
-        </div>
-    @else
-        <!-- Edit Mode -->
+    <!-- Edit Mode -->
         <form wire:submit.prevent="save">
             <div class="space-y-6">
                 <!-- 氏名 -->
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        氏名 <span class="text-red-500">*</span>
-                    </label>
-                    <input 
-                        type="text" 
-                        id="name"
-                        wire:model="name"
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('name') border-red-500 @enderror"
-                        placeholder="山田太郎"
-                        @if($is_completed) readonly @endif
-                    >
-                    @error('name')
-                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
-                    @enderror
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            氏名 <span class="text-red-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <input 
+                                    type="text" 
+                                    wire:model="last_name"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('last_name') border-red-500 @enderror"
+                                    placeholder="姓"
+                                    @if($is_completed) readonly @endif
+                                >
+                                @error('last_name')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <input 
+                                    type="text" 
+                                    wire:model="first_name"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('first_name') border-red-500 @enderror"
+                                    placeholder="名"
+                                    @if($is_completed) readonly @endif
+                                >
+                                @error('first_name')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            ふりがな <span class="text-red-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <input 
+                                    type="text" 
+                                    wire:model="last_name_kana"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('last_name_kana') border-red-500 @enderror"
+                                    placeholder="セイ"
+                                    @if($is_completed) readonly @endif
+                                >
+                                @error('last_name_kana')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <input 
+                                    type="text" 
+                                    wire:model="first_name_kana"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('first_name_kana') border-red-500 @enderror"
+                                    placeholder="メイ"
+                                    @if($is_completed) readonly @endif
+                                >
+                                @error('first_name_kana')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            カタカナで入力してください
+                        </p>
+                    </div>
+                    
                     @if($is_completed)
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">氏名は一度登録すると変更できません</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">氏名は一度登録すると変更できません</p>
                     @endif
                 </div>
 
@@ -159,70 +145,69 @@
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         出生時刻
                     </label>
-                    <div class="space-y-3">
-                        <label class="flex items-center">
-                            <input 
-                                type="radio" 
-                                wire:model="is_birth_time_unknown" 
-                                value="true"
-                                class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <select 
+                                wire:model="birth_hour"
+                                class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('birth_hour') border-red-500 @enderror"
                             >
-                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">不明</span>
-                        </label>
-                        <label class="flex items-center">
-                            <input 
-                                type="radio" 
-                                wire:model="is_birth_time_unknown" 
-                                value="false"
-                                class="w-4 h-4 text-purple-600 border-gray-300 focus:ring-purple-500"
-                            >
-                            <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">分かる</span>
-                        </label>
-                    </div>
-                    
-                    @if(!$is_birth_time_unknown)
-                        <div class="mt-3">
-                            <input 
-                                type="time" 
-                                wire:model="birth_time"
-                                class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('birth_time') border-red-500 @enderror"
-                            >
-                            @error('birth_time')
+                                @foreach($this->getHourOptions() as $value => $label)
+                                    <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @error('birth_hour')
                                 <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
                         </div>
-                    @endif
+                        <div>
+                            <select 
+                                wire:model="birth_minute"
+                                class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('birth_minute') border-red-500 @enderror"
+                            >
+                                @foreach($this->getMinuteOptions() as $value => $label)
+                                    <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
+                            @error('birth_minute')
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        1分刻みで選択できます。不明な場合は「不明」を選択してください。
+                    </p>
                 </div>
 
                 <!-- 出生地 -->
                 <div>
-                    <label for="birth_place" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label for="birth_place_pref" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         出生地 <span class="text-red-500">*</span>
                     </label>
                     <select 
-                        id="birth_place"
-                        wire:model="birth_place"
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('birth_place') border-red-500 @enderror"
+                        id="birth_place_pref"
+                        wire:model="birth_place_pref"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('birth_place_pref') border-red-500 @enderror"
                     >
                         <option value="">都道府県を選択してください</option>
                         @foreach($this->getPrefectures() as $code => $name)
                             <option value="{{ $code }}">{{ $name }}</option>
                         @endforeach
                     </select>
-                    @error('birth_place')
+                    @error('birth_place_pref')
                         <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                     @enderror
                 </div>
+
             </div>
 
             <!-- Action Buttons -->
             <div class="mt-8 flex justify-end space-x-3">
                 <button 
                     type="button"
-                    wire:click="cancelEditing"
+                    wire:click="resetForm"
                     class="px-6 py-2 border border-gray-300 dark:border-zinc-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors"
                 >
-                    キャンセル
+                    リセット
                 </button>
                 <button 
                     type="submit"
@@ -232,5 +217,4 @@
                 </button>
             </div>
         </form>
-    @endif
 </div>

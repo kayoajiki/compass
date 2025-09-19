@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // ProfileObserverを登録
+        \App\Models\Profile::observe(\App\Observers\ProfileObserver::class);
     }
 }
