@@ -29,40 +29,122 @@
                 </div>
 
                 <!-- Calendar Grid -->
-                <div class="grid grid-cols-7 gap-2 mb-4">
-                    <!-- Day headers -->
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">日</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">月</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">火</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">水</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">木</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">金</div>
-                    <div class="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">土</div>
-
-                    <!-- Calendar days -->
-                    @for($day = 1; $day <= 31; $day++)
-                        @php
-                            $date = now()->setDay($day);
-                            $isToday = $date->isToday();
-                            $isWeekend = $date->isWeekend();
-                            $fortuneLevel = rand(1, 5); // Mock data
-                        @endphp
-                        <div class="relative">
-                            <div class="aspect-square flex items-center justify-center text-sm font-medium rounded-lg border
-                                @if($isToday) bg-purple-100 border-purple-300 text-purple-900 dark:bg-purple-900/30 dark:border-purple-700 dark:text-purple-100 @endif
-                                @if($isWeekend && !$isToday) bg-gray-50 border-gray-200 text-gray-600 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300 @endif
-                                @if(!$isToday && !$isWeekend) bg-white border-gray-200 text-gray-900 dark:bg-zinc-900 dark:border-zinc-700 dark:text-white @endif">
-                                {{ $day }}
-                            </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full" role="table">
+                        <!-- 曜日ヘッダー -->
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-zinc-800" role="row">
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-red-600 dark:text-red-400 border-r border-gray-200 dark:border-zinc-600">日</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-gray-900 dark:text-white border-r border-gray-200 dark:border-zinc-600">月</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-gray-900 dark:text-white border-r border-gray-200 dark:border-zinc-600">火</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-gray-900 dark:text-white border-r border-gray-200 dark:border-zinc-600">水</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-gray-900 dark:text-white border-r border-gray-200 dark:border-zinc-600">木</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-gray-900 dark:text-white border-r border-gray-200 dark:border-zinc-600">金</th>
+                                <th scope="col" class="px-2 py-3 text-center text-sm font-medium text-blue-600 dark:text-blue-400">土</th>
+                            </tr>
+                        </thead>
+                        
+                        <!-- 月間カレンダー -->
+                        <tbody>
+                            @php
+                                $firstDay = now()->startOfMonth();
+                                $lastDay = now()->endOfMonth();
+                                $startDate = $firstDay->copy()->startOfWeek(\Carbon\Carbon::SUNDAY);
+                                $endDate = $lastDay->copy()->endOfWeek(\Carbon\Carbon::SATURDAY);
+                                $currentDate = $startDate->copy();
+                            @endphp
                             
-                            <!-- Fortune indicator -->
-                            <div class="absolute -top-1 -right-1 w-3 h-3 rounded-full
-                                @if($fortuneLevel >= 4) bg-green-400 @endif
-                                @if($fortuneLevel == 3) bg-yellow-400 @endif
-                                @if($fortuneLevel <= 2) bg-red-400 @endif">
-                            </div>
-                        </div>
-                    @endfor
+                            @while($currentDate->lte($endDate))
+                                <tr role="row">
+                                    @for($i = 0; $i < 7; $i++)
+                                        @php
+                                            $isCurrentMonth = $currentDate->month === now()->month;
+                                            $isToday = $currentDate->isToday();
+                                            $isWeekend = $currentDate->isWeekend();
+                                            
+                                            // Mock data for Step 5
+                                            $dayNumber = abs($currentDate->diffInDays(\Carbon\Carbon::parse('1900-01-01')));
+                                            $rokuyo = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'][$dayNumber % 6];
+                                            $tenkan = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'][$dayNumber % 10];
+                                            $chishi = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'][$dayNumber % 12];
+                                            $tsuhensei = ['比肩', '劫財', '食神', '傷官', '偏財', '正財', '偏官', '正官', '偏印', '正印'][$dayNumber % 10];
+                                            $juuniun = ['長生', '沐浴', '冠帯', '建禄', '帝旺', '衰', '病', '死', '墓', '絶', '胎', '養'][$dayNumber % 12];
+                                            $luckRank = ['大吉', '吉', '中吉', '小吉', '凶'][$dayNumber % 5];
+                                        @endphp
+                                        
+                                        <td class="px-1 py-3 text-center border-r border-b border-gray-200 dark:border-zinc-600 w-1/7 min-w-[100px]
+                                                   {{ $isToday ? 'bg-yellow-100 dark:bg-yellow-900/20' : ($isCurrentMonth ? 'bg-white dark:bg-zinc-900' : 'bg-gray-50 dark:bg-zinc-800') }}
+                                                   {{ $currentDate->dayOfWeek === 0 ? 'border-l border-gray-200 dark:border-zinc-600' : '' }}"
+                                            aria-label="{{ $currentDate->format('Y年n月j日') }}（{{ ['日', '月', '火', '水', '木', '金', '土'][$currentDate->dayOfWeek] }}） {{ $rokuyo }}／{{ $tenkan }}・{{ $chishi }}／{{ $tsuhensei }}／{{ $juuniun }}／{{ $luckRank }}">
+                                            
+                                            @if($isCurrentMonth)
+                                                <!-- 日付（右上） -->
+                                                <div class="text-right mb-1">
+                                                    <span class="text-sm font-bold {{ $currentDate->dayOfWeek === 0 ? 'text-red-600 dark:text-red-400' : ($currentDate->dayOfWeek === 6 ? 'text-blue-600 dark:text-blue-400' : 'text-gray-900 dark:text-white') }}">
+                                                        {{ $currentDate->day }}
+                                                    </span>
+                                                </div>
+
+                                                <!-- 六曜（左上） -->
+                                                <div class="text-left mb-1 h-3 flex items-center">
+                                                    <span class="text-xs {{ $rokuyo === '大安' ? 'text-red-600 dark:text-red-400' : ($rokuyo === '仏滅' ? 'text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white') }}">
+                                                        {{ $rokuyo }}
+                                                    </span>
+                                                </div>
+
+                                                <!-- 祝日名（固定高さで段落揃え） -->
+                                                <div class="text-left mb-1 h-3 flex items-center">
+                                                    @php
+                                                        $holidayService = new \App\Domain\Calendar\Services\JapaneseHolidayService();
+                                                        $holiday = $holidayService->getDayHoliday($currentDate);
+                                                    @endphp
+                                                    @if($holiday)
+                                                        <span class="text-xs font-medium text-red-600 dark:text-red-400">
+                                                            {{ $holiday }}
+                                                        </span>
+                                                    @endif
+                                                </div>
+
+                                                <!-- 十干・十二支 -->
+                                                <div class="text-left mb-1 h-3 flex items-center">
+                                                    <span class="text-xs text-gray-700 dark:text-gray-300">
+                                                        {{ $tenkan }} {{ $chishi }}
+                                                    </span>
+                                                </div>
+
+                                                <!-- 通変星 -->
+                                                <div class="text-left mb-1 h-3 flex items-center">
+                                                    <span class="text-xs text-gray-700 dark:text-gray-300">
+                                                        {{ $tsuhensei }}
+                                                    </span>
+                                                </div>
+
+                                                <!-- 十二運 -->
+                                                <div class="text-left mb-1 h-3 flex items-center">
+                                                    <span class="text-xs text-gray-700 dark:text-gray-300">
+                                                        {{ $juuniun }}
+                                                    </span>
+                                                </div>
+
+                                                <!-- 運勢ランク -->
+                                                <div class="text-left h-3 flex items-center">
+                                                    <span class="text-xs font-semibold {{ $luckRank === '大吉' ? 'text-red-600 dark:text-red-400' : ($luckRank === '凶' ? 'text-red-600 dark:text-red-400' : 'text-gray-900 dark:text-white') }}">
+                                                        {{ $luckRank }}
+                                                    </span>
+                                                </div>
+                                            @else
+                                                <span class="text-xs text-gray-400 dark:text-gray-500">
+                                                    {{ $currentDate->day }}
+                                                </span>
+                                            @endif
+                                        </td>
+                                        
+                                        @php $currentDate->addDay(); @endphp
+                                    @endfor
+                                </tr>
+                            @endwhile
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- Legend -->

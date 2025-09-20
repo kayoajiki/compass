@@ -54,5 +54,38 @@ return [
         '他者プロフィール追加',
         '月次レポート',
         '優先サポート'
+    ],
+
+    'ai' => [
+        'dify' => [
+            'base_url' => env('DIFY_BASE_URL'),
+            'api_key' => env('DIFY_API_KEY'),
+        ],
+        'apps' => [
+            'chat_mood_coach' => 'chat_mood_coach_v1',
+            'chat_tarot_quick' => 'chat_tarot_quick_v1',
+            'chat_strength_booster' => 'chat_strength_booster_v1',
+        ],
+    ],
+
+    'chatbots' => [
+        'free_daily_limit' => 1,
+        'bots' => [
+            'mood' => [
+                'name' => '気分・日記のサポート',
+                'icon' => '📝',
+                'description' => '今日の気分を記録して、寄り添いのメッセージを受け取りましょう'
+            ],
+            'tarot' => [
+                'name' => 'タロット簡易アドバイス',
+                'icon' => '🃏',
+                'description' => '日々の悩みや疑問をタロットで占ってみましょう'
+            ],
+            'strength' => [
+                'name' => '今日の褒めポイント',
+                'icon' => '✨',
+                'description' => 'あなたの生年月日から今日の強みと活かし方を見つけましょう'
+            ]
+        ]
     ]
 ];

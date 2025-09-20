@@ -20,10 +20,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     
+    // Logout route
+    Route::post('logout', function () {
+        auth()->logout();
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        return redirect('/');
+    })->name('logout');
+    
     // プロフィール設定
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     
-    // カレンダー機能（Chart: 無料、Reading: 有料）
+    // カレンダー機能
+    Route::get('calendar', \App\Livewire\Astrology\Calendar\MonthlyIndex::class)->name('calendar');
+    
     Route::get('calendar/chart', function () {
         return view('calendar.chart');
     })->name('calendar.chart');
