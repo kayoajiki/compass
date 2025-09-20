@@ -3,6 +3,8 @@
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Http\Controllers\Web\ReadingController;
+use App\Http\Controllers\Web\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +29,18 @@ Route::middleware(['auth'])->group(function () {
         request()->session()->regenerateToken();
         return redirect('/');
     })->name('logout');
+    
+    // 個別鑑定
+    Route::get('/reading-shop', [ReadingController::class, 'index'])->name('reading-shop');
+    Route::post('/reading/checkout', [ReadingController::class, 'checkout'])->name('reading.checkout');
+    Route::get('/reading/thanks', [ReadingController::class, 'thanks'])->name('reading.thanks');
+    Route::get('/reading/canceled', [ReadingController::class, 'canceled'])->name('reading.canceled');
+
+    // 物販
+    Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+    Route::post('/shop/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
+    Route::get('/shop/thanks', [ShopController::class, 'thanks'])->name('shop.thanks');
+    Route::get('/shop/canceled', [ShopController::class, 'canceled'])->name('shop.canceled');
     
     // プロフィール設定
     Route::get('profile/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
@@ -87,5 +101,7 @@ Route::middleware(['auth'])->group(function () {
 
 // Stripe Webhook
 Route::post('stripe/webhook', [App\Http\Controllers\Web\StripeWebhookController::class, 'handle'])->name('cashier.webhook');
+
+// Admin Panel - Filament routes will be automatically registered
 
 require __DIR__.'/auth.php';

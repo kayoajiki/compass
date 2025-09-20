@@ -109,6 +109,16 @@
             </div>
         </div>
 
+        <!-- 開運アイテムスライドショー -->
+        <section class="mb-6 sm:mb-8">
+            <livewire:components.merch-slider />
+        </section>
+
+        <!-- 個別鑑定スライドショー -->
+        <section class="mb-6 sm:mb-8">
+            <livewire:components.reading-slider />
+        </section>
+
         <!-- Subscription Status -->
         @if(auth()->user()->hasActiveSubscription())
             <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 text-white">
