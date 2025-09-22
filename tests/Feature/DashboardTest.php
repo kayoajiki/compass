@@ -9,7 +9,20 @@ test('guests are redirected to the login page', function () {
 });
 
 test('authenticated users can visit the dashboard', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create();
+    
+    // プロフィールを作成して完了状態にする
+    $user->profile()->create([
+        'name' => 'Test User',
+        'birth_date' => '1990-01-01',
+        'birth_time' => '12:00',
+        'birth_place_pref' => 'Tokyo',
+        'longitude_adjust' => 0,
+        'is_completed' => true,
+        'completed_at' => now(),
+    ]);
+
+    $this->actingAs($user);
 
     $this->get('/dashboard')->assertStatus(200);
 });
