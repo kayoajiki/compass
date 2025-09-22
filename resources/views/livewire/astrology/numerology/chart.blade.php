@@ -34,29 +34,29 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <!-- Life Path Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">ライフパスナンバー</h3>
+                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">過去数</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                                     {{ $chartData['life_path_number'] ?? '7' }}
                                 </div>
-                                <p class="text-sm text-purple-700 dark:text-purple-300">人生の目的と方向性</p>
+                                <p class="text-sm text-purple-700 dark:text-purple-300">過去に辿ってきた道のり<br>得意なこと</p>
                             </div>
 
                             <!-- Expression Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">表現ナンバー</h3>
+                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">ライフパスナンバー</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                                     {{ $chartData['expression_number'] ?? '3' }}
                                 </div>
-                                <p class="text-sm text-purple-700 dark:text-purple-300">才能と表現力</p>
+                                <p class="text-sm text-purple-700 dark:text-purple-300">一生を通じて関わる<br>人生のテーマ</p>
                             </div>
 
                             <!-- Soul Urge Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">ソウルアージナンバー</h3>
+                                <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">未来数</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                                     {{ $chartData['soul_urge_number'] ?? '9' }}
                                 </div>
-                                <p class="text-sm text-purple-700 dark:text-purple-300">内なる欲求と動機</p>
+                                <p class="text-sm text-purple-700 dark:text-purple-300">内なる欲求と動機<br>憧れの対象</p>
                             </div>
                         </div>
                     </div>
