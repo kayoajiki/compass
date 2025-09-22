@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Filament\Facades\Filament;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // ProfileObserverを登録
         \App\Models\Profile::observe(\App\Observers\ProfileObserver::class);
+        
+        // Filamentパネルはbootstrap/providers.phpで登録
     }
 }

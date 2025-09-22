@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EnsureAdminAccess
+class RoleMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class EnsureAdminAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth('admin')->check() || !auth('admin')->user()->isAdmin()) {
-            abort(403, '管理者権限が必要です。');
+        if (auth()->user()->role == 'admin') {
+            return $next($request);
         }
-        
-        return $next($request);
+        return redirect()->route('dashboard');
     }
 }

@@ -102,6 +102,36 @@ Route::middleware(['auth'])->group(function () {
 // Stripe Webhook
 Route::post('stripe/webhook', [App\Http\Controllers\Web\StripeWebhookController::class, 'handle'])->name('cashier.webhook');
 
-// Admin Panel - Filament routes will be automatically registered
+// Admin Panel Routes
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/login', [App\Http\Controllers\Admin\AuthController::class, 'login']);
+    Route::post('/logout', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('admin.logout');
+    
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+        
+        // 商品管理
+        Route::resource('products', App\Http\Controllers\Admin\ProductController::class)->names([
+            'index' => 'admin.products.index',
+            'create' => 'admin.products.create',
+            'store' => 'admin.products.store',
+            'show' => 'admin.products.show',
+            'edit' => 'admin.products.edit',
+            'update' => 'admin.products.update',
+            'destroy' => 'admin.products.destroy',
+        ]);
+        
+        // ユーザー管理
+        Route::resource('users', App\Http\Controllers\Admin\UserController::class)->names([
+            'index' => 'admin.users.index',
+            'show' => 'admin.users.show',
+            'edit' => 'admin.users.edit',
+            'update' => 'admin.users.update',
+            'destroy' => 'admin.users.destroy',
+        ]);
+    });
+});
+
 
 require __DIR__.'/auth.php';
