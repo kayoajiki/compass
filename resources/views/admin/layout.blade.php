@@ -54,10 +54,16 @@
                                 ユーザー管理
                             </a>
                             
-                            <a href="#" 
-                               class="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900">
+                            <a href="{{ route('admin.orders.index') }}" 
+                               class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('admin.orders.*') ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
                                 <span class="mr-3">📦</span>
                                 注文管理
+                            </a>
+                            
+                            <a href="{{ route('admin.stats.index') }}" 
+                               class="group flex items-center px-2 py-2 text-sm font-medium rounded-md {{ request()->routeIs('admin.stats.*') ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' }}">
+                                <span class="mr-3">📊</span>
+                                統計ダッシュボード
                             </a>
                         </nav>
                     </div>

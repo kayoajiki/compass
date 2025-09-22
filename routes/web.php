@@ -130,6 +130,20 @@ Route::prefix('admin')->group(function () {
             'update' => 'admin.users.update',
             'destroy' => 'admin.users.destroy',
         ]);
+        
+        // 注文管理
+        Route::resource('orders', App\Http\Controllers\Admin\OrderController::class)->names([
+            'index' => 'admin.orders.index',
+            'show' => 'admin.orders.show',
+            'edit' => 'admin.orders.edit',
+            'update' => 'admin.orders.update',
+            'destroy' => 'admin.orders.destroy',
+        ]);
+        Route::put('orders/{order}/status', [App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('admin.orders.update-status');
+        
+        // 統計ダッシュボード
+        Route::get('stats', [App\Http\Controllers\Admin\StatsController::class, 'index'])->name('admin.stats.index');
+        Route::get('stats/chart-data', [App\Http\Controllers\Admin\StatsController::class, 'getChartData'])->name('admin.stats.chart-data');
     });
 });
 
