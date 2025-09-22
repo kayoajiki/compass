@@ -1,0 +1,511 @@
+/* 紫微斗数命盤専用CSS */
+
+.ziwei-chart {
+    font-family: 'Noto Sans CJK JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+}
+
+/* 命盤コンテナ */
+.ziwei-chart-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 12宮グリッド（3x4、中央2x2は空白） */
+.ziwei-palace-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 3/4;
+    background: #f3f4f6;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 4px;
+    margin: 0 auto;
+}
+
+/* 中央パネル（2x2の空白部分） */
+.ziwei-center-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(15% - 2px);
+    height: calc(50% - 2px);
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ziwei-center-content {
+    text-align: center;
+    padding: 16px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 各宮のスタイル */
+.ziwei-palace {
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+    position: relative;
+    background: white;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 120px;
+}
+
+.ziwei-palace:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 命宮の特別スタイル */
+.ziwei-palace-ming {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+/* 中央の空白部分を隠す */
+.ziwei-palace-center {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 宮のヘッダー部分 */
+.ziwei-palace-header {
+    margin-bottom: 8px;
+}
+
+/* 地支 */
+.ziwei-zhi {
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+/* 宮名 */
+.ziwei-palace-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+
+/* 宮干 */
+.ziwei-stem {
+    font-size: 10px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+/* 主星エリア */
+.ziwei-main-stars {
+    margin-bottom: 4px;
+    min-height: 24px;
+}
+
+/* 主星 */
+.ziwei-main-star {
+    font-size: 13px;
+    font-weight: bold;
+    color: #dc2626;
+    margin-bottom: 2px;
+    position: relative;
+    line-height: 1.2;
+}
+
+/* 副星エリア */
+.ziwei-sub-stars {
+    font-size: 10px;
+    line-height: 1.1;
+}
+
+/* 吉星 */
+.ziwei-lucky-star {
+    color: #2563eb;
+    margin-bottom: 1px;
+}
+
+/* 凶星 */
+.ziwei-malefic-star {
+    color: #dc2626;
+    margin-bottom: 1px;
+}
+
+/* 四化マーク */
+.ziwei-transform {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+    min-width: 16px;
+    text-align: center;
+}
+
+.ziwei-transform-lu {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.ziwei-transform-quan {
+    background: #f3e8ff;
+    color: #7c3aed;
+    border: 1px solid #e9d5ff;
+}
+
+.ziwei-transform-ke {
+    background: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+}
+
+.ziwei-transform-ji {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+/* 中央情報エリア */
+.ziwei-center-info {
+    margin-bottom: 16px;
+}
+
+.ziwei-center-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 12px;
+}
+
+.ziwei-center-item {
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #374151;
+}
+
+.ziwei-center-label {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+/* 四化凡例 */
+.ziwei-transform-legend {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+}
+
+.ziwei-transform-legend h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+/* 四化情報 */
+.ziwei-transforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.ziwei-transform-card {
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    border: 2px solid;
+}
+
+.ziwei-transform-card.lu {
+    border-color: #22c55e;
+    background: #f0fdf4;
+}
+
+.ziwei-transform-card.quan {
+    border-color: #a855f7;
+    background: #faf5ff;
+}
+
+.ziwei-transform-card.ke {
+    border-color: #3b82f6;
+    background: #eff6ff;
+}
+
+.ziwei-transform-card.ji {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.ziwei-transform-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.ziwei-transform-star {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.ziwei-transform-palace {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* 凡例 */
+.ziwei-legend {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 32px;
+}
+
+.ziwei-legend-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.ziwei-legend-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.ziwei-legend-section {
+    color: white;
+}
+
+.ziwei-legend-section-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.ziwei-legend-list {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.ziwei-legend-item {
+    margin-bottom: 4px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .ziwei-chart-container {
+        max-width: 100%;
+        padding: 8px;
+    }
+    
+    .ziwei-palace-grid {
+        gap: 1px;
+        padding: 2px;
+        max-width: 100%;
+        aspect-ratio: 3/4;
+    }
+    
+    .ziwei-palace {
+        min-height: 70px;
+        padding: 4px;
+    }
+    
+    .ziwei-main-star {
+        font-size: 11px;
+    }
+    
+    .ziwei-lucky-star,
+    .ziwei-malefic-star {
+        font-size: 8px;
+    }
+    
+    .ziwei-transform {
+        font-size: 7px;
+        padding: 1px 2px;
+        min-width: 10px;
+    }
+    
+    .ziwei-center-panel {
+        width: calc(15% - 2px);
+        height: calc(50% - 2px);
+    }
+    
+    .ziwei-center-content {
+        padding: 6px;
+    }
+    
+    .ziwei-center-title {
+        font-size: 14px;
+    }
+    
+    .ziwei-center-item {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ziwei-palace-grid {
+        gap: 1px;
+        padding: 1px;
+        aspect-ratio: 3/4;
+    }
+    
+    .ziwei-palace {
+        min-height: 60px;
+        padding: 3px;
+    }
+    
+    .ziwei-palace-name {
+        font-size: 8px;
+    }
+    
+    .ziwei-zhi {
+        font-size: 10px;
+    }
+    
+    .ziwei-main-star {
+        font-size: 9px;
+    }
+    
+    .ziwei-sub-stars {
+        font-size: 7px;
+    }
+    
+    .ziwei-transform {
+        font-size: 6px;
+        padding: 1px;
+        min-width: 8px;
+    }
+    
+    .ziwei-center-panel {
+        width: calc(15% - 1px);
+        height: calc(50% - 1px);
+    }
+    
+    .ziwei-center-title {
+        font-size: 12px;
+    }
+    
+    .ziwei-center-item {
+        font-size: 9px;
+    }
+    
+    .ziwei-center-content {
+        padding: 4px;
+    }
+}
+
+/* 印刷用スタイル */
+@media print {
+    .ziwei-chart {
+        background: white !important;
+    }
+    
+    .ziwei-palace {
+        border: 1px solid #000 !important;
+        background: white !important;
+        break-inside: avoid;
+    }
+    
+    .ziwei-palace.ming-palace {
+        background: #fef3c7 !important;
+    }
+    
+    .ziwei-transform {
+        background: white !important;
+        border: 1px solid #000 !important;
+        color: #000 !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* アニメーション */
+.ziwei-palace {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.ziwei-palace:nth-child(1) { animation-delay: 0.1s; }
+.ziwei-palace:nth-child(2) { animation-delay: 0.2s; }
+.ziwei-palace:nth-child(3) { animation-delay: 0.3s; }
+.ziwei-palace:nth-child(4) { animation-delay: 0.4s; }
+.ziwei-palace:nth-child(5) { animation-delay: 0.5s; }
+.ziwei-palace:nth-child(6) { animation-delay: 0.6s; }
+.ziwei-palace:nth-child(7) { animation-delay: 0.7s; }
+.ziwei-palace:nth-child(8) { animation-delay: 0.8s; }
+.ziwei-palace:nth-child(9) { animation-delay: 0.9s; }
+.ziwei-palace:nth-child(10) { animation-delay: 1.0s; }
+.ziwei-palace:nth-child(11) { animation-delay: 1.1s; }
+.ziwei-palace:nth-child(12) { animation-delay: 1.2s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    .ziwei-palace {
+        background: #1f2937;
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .ziwei-zhi {
+        color: #f9fafb;
+    }
+    
+    .ziwei-palace-name {
+        color: #f9fafb;
+    }
+    
+    .ziwei-stem {
+        color: #9ca3af;
+    }
+    
+    .ziwei-center-info {
+        background: #374151;
+        border-color: #4b5563;
+        color: #f9fafb;
+    }
+    
+    .ziwei-center-title {
+        color: #f9fafb;
+    }
+    
+    .ziwei-center-label {
+        color: #f9fafb;
+    }
+}

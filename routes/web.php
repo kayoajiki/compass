@@ -102,6 +102,20 @@ Route::middleware(['auth'])->group(function () {
 // Stripe Webhook
 Route::post('stripe/webhook', [App\Http\Controllers\Web\StripeWebhookController::class, 'handle'])->name('cashier.webhook');
 
+// 紫微斗数
+Route::prefix('ziwei')->name('ziwei.')->group(function () {
+    Route::get('/', [App\Http\Controllers\ZiweiController::class, 'index'])->name('index');
+    Route::post('/generate', [App\Http\Controllers\ZiweiController::class, 'generate'])->name('generate');
+    Route::get('/chart', [App\Http\Controllers\ZiweiController::class, 'chart'])->name('chart');
+    Route::get('/pdf', [App\Http\Controllers\ZiweiController::class, 'pdf'])->name('pdf');
+    
+    // API endpoints
+    Route::get('/prefectures', [App\Http\Controllers\ZiweiController::class, 'prefectures'])->name('prefectures');
+    Route::post('/details', [App\Http\Controllers\ZiweiController::class, 'details'])->name('details');
+    Route::post('/statistics', [App\Http\Controllers\ZiweiController::class, 'statistics'])->name('statistics');
+    Route::post('/validate', [App\Http\Controllers\ZiweiController::class, 'validate'])->name('validate');
+});
+
 // Admin Panel Routes
 Route::prefix('admin')->group(function () {
     Route::get('/login', [App\Http\Controllers\Admin\AuthController::class, 'showLoginForm'])->name('admin.login');
