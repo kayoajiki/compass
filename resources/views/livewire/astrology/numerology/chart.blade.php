@@ -32,29 +32,29 @@
                     <div class="mb-8">
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-6 text-center">数秘術ナンバー</h2>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <!-- Life Path Number -->
+                            <!-- Past Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
                                 <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">過去数</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                                    {{ $chartData['life_path_number'] ?? '7' }}
+                                    {{ $chartData['past_number'] ?? '?' }}
                                 </div>
                                 <p class="text-sm text-purple-700 dark:text-purple-300">過去に辿ってきた道のり<br>得意なこと</p>
                             </div>
 
-                            <!-- Expression Number -->
+                            <!-- Life Path Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
                                 <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">ライフパスナンバー</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                                    {{ $chartData['expression_number'] ?? '3' }}
+                                    {{ $chartData['life_path_number'] ?? '?' }}
                                 </div>
                                 <p class="text-sm text-purple-700 dark:text-purple-300">一生を通じて関わる<br>人生のテーマ</p>
                             </div>
 
-                            <!-- Soul Urge Number -->
+                            <!-- Future Number -->
                             <div class="text-center p-6 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-700">
                                 <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-2">未来数</h3>
                                 <div class="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">
-                                    {{ $chartData['soul_urge_number'] ?? '9' }}
+                                    {{ $chartData['future_number'] ?? '?' }}
                                 </div>
                                 <p class="text-sm text-purple-700 dark:text-purple-300">内なる欲求と動機<br>憧れの対象</p>
                             </div>
@@ -63,8 +63,10 @@
 
                     <!-- パーソナルイヤー（無料） -->
                     @if(isset($chartData['personal_year']) && !empty($chartData['personal_year']))
-                        <div class="mb-8">
-                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">パーソナルイヤー</h2>
+                        <div class="text-center mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">パーソナルイヤーナンバー</h2>
+                            <p class="text-gray-600 dark:text-gray-300">人それぞれに巡る運気のサイクル</p>
+                            
                             <div class="text-center p-6 bg-gray-50 dark:bg-zinc-800 rounded-lg">
                                 <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                                     {{ $chartData['personal_year']['personal_year_number'] ?? '5' }}
