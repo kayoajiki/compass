@@ -229,10 +229,29 @@ class Chart extends Component
         $totalSum = $yearSum + $monthSum + $daySum;
         
         
-        // 一桁になるまで足し算
-        $personalYearNumber = $this->reduceToSingleDigit($totalSum);
+        // 一桁になるまで足し算（11・22・33も含めて）
+        $personalYearNumber = $this->reduceToSingleDigitForPersonalYear($totalSum);
         
         return $personalYearNumber;
+    }
+    
+    /**
+     * パーソナルイヤー専用：数値を一桁になるまで足し算する
+     * 11・22・33も一桁になるまで計算する
+     */
+    private function reduceToSingleDigitForPersonalYear(int $number): int
+    {
+        // 一桁になるまで足し算
+        while ($number > 9) {
+            $sum = 0;
+            while ($number > 0) {
+                $sum += $number % 10;
+                $number = intval($number / 10);
+            }
+            $number = $sum;
+        }
+        
+        return $number;
     }
 
     public function render()
