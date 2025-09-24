@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gray-50 dark:bg-zinc-900">
+<x-layouts.app :title="'相性占い - FortuneCompass'">
     <div class="py-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back to Dashboard Button -->
@@ -297,4 +297,4 @@
             </div>
         </div>
     </div>
-</div>
+</x-layouts.app>
