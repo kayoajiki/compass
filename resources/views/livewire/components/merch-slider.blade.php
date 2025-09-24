@@ -10,8 +10,9 @@
                 <p class="text-sm text-gray-600">あなたの運勢をサポートする特別なアイテム</p>
             </div>
         </div>
-        <a href="{{ route('shop') }}" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:from-pink-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl">
-            すべて見る →
+        <a href="{{ route('shop') }}" 
+           class="bg-purple-500 text-white px-6 py-3 rounded-xl font-semibold text-base hover:bg-purple-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 border border-purple-400/30 hover:border-purple-300/50">
+            🛍️ すべて見る →
         </a>
     </div>
 

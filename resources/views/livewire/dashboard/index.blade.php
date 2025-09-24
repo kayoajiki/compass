@@ -133,18 +133,20 @@
                 </div>
             </div>
         @else
-            <div class="bg-gradient-to-r from-purple-600 to-purple-700 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 text-white">
+            <div class="bg-purple-500 rounded-xl sm:rounded-2xl shadow-xl p-6 sm:p-8 text-white border border-purple-400/20">
                 <div class="text-center">
-                    <h3 class="text-lg sm:text-xl font-bold mb-2">より深い鑑定をお楽しみください</h3>
-                    <p class="text-purple-100 text-sm sm:text-base mb-3 sm:mb-4">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 text-white">より深い鑑定をお楽しみください</h3>
+                    <p class="text-purple-100 text-sm sm:text-base mb-6 sm:mb-8 leading-relaxed">
                         月額980円で詳細な鑑定、相性分析、運勢カレンダー、AI生成レポートが利用できます
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center">
-                        <a href="{{ route('pricing') }}" class="bg-white text-purple-600 hover:bg-purple-50 px-4 sm:px-6 py-2 rounded-md sm:rounded-lg text-sm sm:text-base font-medium transition-colors">
-                            月額プラン（¥980/月）
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                        <a href="{{ route('pricing') }}" 
+                           class="bg-white text-purple-700 hover:bg-purple-50 hover:text-purple-800 px-6 sm:px-8 py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            💎 月額プラン（¥980/月）
                         </a>
-                        <a href="{{ route('pricing') }}" class="border border-white text-white hover:bg-white/10 px-4 sm:px-6 py-2 rounded-md sm:rounded-lg text-sm sm:text-base font-medium transition-colors">
-                            年額プラン（¥9,800/年）
+                        <a href="{{ route('pricing') }}" 
+                           class="border-2 border-white text-white hover:bg-white hover:text-purple-700 px-6 sm:px-8 py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            ⭐ 年額プラン（¥9,800/年）
                         </a>
                     </div>
                 </div>
