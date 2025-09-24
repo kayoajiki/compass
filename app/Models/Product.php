@@ -60,4 +60,23 @@ class Product extends Model
     {
         return $query->where('type', $type);
     }
+
+    /**
+     * 商品画像のURLを取得
+     */
+    public function getImageUrlAttribute(): ?string
+    {
+        if (isset($this->metadata['image'])) {
+            return asset('storage/' . $this->metadata['image']);
+        }
+        return null;
+    }
+
+    /**
+     * 商品画像のパスを取得
+     */
+    public function getImagePathAttribute(): ?string
+    {
+        return $this->metadata['image'] ?? null;
+    }
 }

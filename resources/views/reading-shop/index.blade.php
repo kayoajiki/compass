@@ -13,22 +13,30 @@
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 @foreach($readingProducts as $product)
                     <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                        <!-- 商品画像エリア（プレースホルダー） -->
-                        <div class="h-48 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
-                            <div class="text-6xl opacity-30">
-                                @if(str_contains($product->name, '四柱'))
-                                    🔮
-                                @elseif(str_contains($product->name, '紫微'))
-                                    ⭐
-                                @elseif(str_contains($product->name, '西洋'))
-                                    🌟
-                                @elseif(str_contains($product->name, '数秘'))
-                                    🔢
-                                @else
-                                    ✨
-                                @endif
+                        <!-- 商品画像エリア -->
+                        @if($product->image_url)
+                            <div class="h-48 bg-gray-100">
+                                <img src="{{ $product->image_url }}" 
+                                     alt="{{ $product->name }}"
+                                     class="w-full h-full object-cover">
                             </div>
-                        </div>
+                        @else
+                            <div class="h-48 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center">
+                                <div class="text-6xl opacity-30">
+                                    @if(str_contains($product->name, '四柱'))
+                                        🔮
+                                    @elseif(str_contains($product->name, '紫微'))
+                                        ⭐
+                                    @elseif(str_contains($product->name, '西洋'))
+                                        🌟
+                                    @elseif(str_contains($product->name, '数秘'))
+                                        🔢
+                                    @else
+                                        ✨
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
 
                         <!-- 商品情報 -->
                         <div class="p-6">

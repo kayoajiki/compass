@@ -61,7 +61,7 @@
             <div class="bg-white dark:bg-zinc-900 rounded-xl sm:rounded-2xl shadow-sm border border-purple-100 dark:border-zinc-700 p-3 sm:p-4 lg:p-6 hover:shadow-md transition-shadow">
                 <div class="text-center">
                     <div class="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4">🔢</div>
-                    <h3 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2">数秘術</h3>
+                    <h3 class="text-sm sm:text-base lg:text-lg font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2">数秘術</h3
                     <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-2 sm:mb-3 lg:mb-4">数字の神秘的な力で導く</p>
                     <a href="{{ route('numerology.chart') }}" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-2 sm:px-3 lg:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-colors block">
                         鑑定する

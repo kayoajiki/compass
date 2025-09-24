@@ -94,10 +94,10 @@
                             <div class="col-span-6">
                                 <label for="image" class="block text-sm font-medium text-gray-700">商品画像</label>
                                 
-                                @if($product->metadata && isset($product->metadata['image']))
+                                @if($product->image_url)
                                     <div class="mt-2 mb-4">
                                         <p class="text-sm text-gray-500 mb-2">現在の画像:</p>
-                                        <img src="{{ Storage::url($product->metadata['image']) }}" 
+                                        <img src="{{ $product->image_url }}" 
                                              alt="{{ $product->name }}" 
                                              class="h-20 w-20 object-cover rounded-lg">
                                     </div>

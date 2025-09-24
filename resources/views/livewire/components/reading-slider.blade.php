@@ -58,21 +58,29 @@
                         
                         <!-- 鑑定画像エリア -->
                         <div class="w-full sm:w-1/2 lg:w-2/5 mb-6 sm:mb-0">
-                            <div class="w-full h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl flex items-center justify-center">
-                                <div class="text-8xl opacity-40">
-                                    @if(str_contains($product['name'], '四柱'))
-                                        🔮
-                                    @elseif(str_contains($product['name'], '紫微'))
-                                        ⭐
-                                    @elseif(str_contains($product['name'], '西洋'))
-                                        🌟
-                                    @elseif(str_contains($product['name'], '数秘'))
-                                        🔢
-                                    @else
-                                        ✨
-                                    @endif
+                            @if(isset($product['image_url']) && $product['image_url'])
+                                <div class="w-full h-48 sm:h-64 lg:h-80 bg-gray-100 rounded-2xl shadow-xl overflow-hidden">
+                                    <img src="{{ $product['image_url'] }}" 
+                                         alt="{{ $product['name'] }}"
+                                         class="w-full h-full object-cover">
                                 </div>
-                            </div>
+                            @else
+                                <div class="w-full h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 rounded-2xl shadow-xl flex items-center justify-center">
+                                    <div class="text-8xl opacity-40">
+                                        @if(str_contains($product['name'], '四柱'))
+                                            🔮
+                                        @elseif(str_contains($product['name'], '紫微'))
+                                            ⭐
+                                        @elseif(str_contains($product['name'], '西洋'))
+                                            🌟
+                                        @elseif(str_contains($product['name'], '数秘'))
+                                            🔢
+                                        @else
+                                            ✨
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                         
                         <!-- 鑑定情報 -->

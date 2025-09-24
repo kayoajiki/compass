@@ -22,6 +22,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     
+    // Shop routes
+    Route::get('shop', [ShopController::class, 'index'])->name('shop');
+    Route::post('shop/checkout', [ShopController::class, 'checkout'])->name('shop.checkout');
+    Route::get('shop/thanks', [ShopController::class, 'thanks'])->name('shop.thanks');
+    Route::get('shop/canceled', [ShopController::class, 'canceled'])->name('shop.canceled');
+    
     // Logout route
     Route::post('logout', function () {
         auth()->logout();

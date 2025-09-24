@@ -22,8 +22,10 @@ class MerchSlider extends Component
             ->get()
             ->map(function ($product) {
                 $metadata = $product->metadata ?? [];
-                $product->popularity_score = $metadata['popularity_score'] ?? 0;
-                return $product;
+                $productArray = $product->toArray();
+                $productArray['image_url'] = $product->image_url;
+                $productArray['popularity_score'] = $metadata['popularity_score'] ?? 0;
+                return $productArray;
             })
             ->sortByDesc('popularity_score')
             ->take(8)

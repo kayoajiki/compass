@@ -58,7 +58,7 @@
                         
                         <!-- 商品画像 -->
                         <div class="w-full sm:w-1/2 lg:w-2/5 mb-6 sm:mb-0">
-                            <img src="{{ $product['metadata']['image_url'] ?? 'https://via.placeholder.com/300x300?text=商品画像' }}" 
+                            <img src="{{ $product['image_url'] ?? 'https://via.placeholder.com/300x300?text=商品画像' }}" 
                                  alt="{{ $product['name'] }}"
                                  class="w-full h-48 sm:h-64 lg:h-80 object-cover rounded-2xl shadow-xl">
                         </div>

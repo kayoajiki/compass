@@ -24,6 +24,15 @@
             <h3 class="text-lg leading-6 font-medium text-gray-900">商品情報</h3>
             <p class="mt-1 max-w-2xl text-sm text-gray-500">商品の詳細情報を表示しています。</p>
         </div>
+        @if($product->image_url)
+            <div class="px-4 py-5 sm:px-6 border-t border-gray-200">
+                <div class="flex justify-center">
+                    <img src="{{ $product->image_url }}" 
+                         alt="{{ $product->name }}"
+                         class="max-w-md w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        @endif
         <div class="border-t border-gray-200">
             <dl>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

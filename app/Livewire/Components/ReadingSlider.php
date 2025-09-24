@@ -15,12 +15,19 @@ class ReadingSlider extends Component
     public function mount()
     {
         // 鑑定商品を取得（アクティブなもののみ）
-        $this->products = Product::active()
+        $products = Product::active()
             ->byType('service')
             ->orderBy('created_at', 'desc')
             ->take(4) // 4つの鑑定方法
             ->get()
+            ->map(function ($product) {
+                $productArray = $product->toArray();
+                $productArray['image_url'] = $product->image_url;
+                return $productArray;
+            })
             ->toArray();
+
+        $this->products = $products;
     }
 
     public function next()
