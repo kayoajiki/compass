@@ -72,14 +72,6 @@ class User extends Authenticatable
     }
 
     /**
-     * プロフィールとのリレーション
-     */
-    public function profile(): HasOne
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    /**
      * プロフィールが完成しているかチェック
      */
     public function hasCompletedProfile(): bool
