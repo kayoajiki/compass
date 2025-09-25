@@ -46,7 +46,7 @@
                     <!-- Logo -->
                     <div class="flex items-center flex-shrink-0 px-4 mb-8">
                         <a href="{{ route('dashboard') }}" class="flex items-center space-x-2" wire:navigate>
-                            <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                            <div class="w-8 h-8 bg-[#af90e2] rounded-lg flex items-center justify-center">
                                 <span class="text-white font-bold text-sm">FC</span>
                             </div>
                             <span class="text-xl font-bold text-gray-900 dark:text-white">FortuneCompass</span>
@@ -57,7 +57,7 @@
                     <nav class="flex-1 px-4 space-y-2">
                         <div class="space-y-1">
                             <h3 class="px-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Platform</h3>
-                            <a href="{{ route('dashboard') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('dashboard') ? 'bg-purple-100 text-purple-900 dark:bg-purple-900 dark:text-purple-100' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' }}" wire:navigate>
+                            <a href="{{ route('dashboard') }}" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md {{ request()->routeIs('dashboard') ? 'bg-zinc-200 text-[#4f2fa0] dark:bg-zinc-800 dark:text-[#af90e2]' : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800' }}" wire:navigate>
                                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
@@ -150,7 +150,7 @@
                         <!-- Logo -->
                         <div class="flex items-center justify-between px-4 py-4 border-b border-zinc-200 dark:border-zinc-700">
                             <a href="{{ route('dashboard') }}" class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                                <div class="w-8 h-8 bg-[#af90e2] rounded-lg flex items-center justify-center">
                                     <span class="text-white font-bold text-sm">FC</span>
                                 </div>
                                 <span class="text-lg font-bold text-gray-900 dark:text-white">FortuneCompass</span>

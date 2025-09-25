@@ -3,7 +3,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back to Dashboard Button -->
             <div class="mb-6">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 transition-colors">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-[#af90e2] hover:text-[#4f2fa0] dark:text-[#af90e2] dark:hover:text-[#d5cabd] transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -11,11 +11,11 @@
                 </a>
             </div>
 
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-purple-100 dark:border-zinc-700 p-6">
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-sm border border-zinc-200 dark:border-zinc-700 p-6">
                 @if($isLoading)
                     <!-- Loading state -->
                     <div class="flex items-center justify-center py-12">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#af90e2]"></div>
                         <span class="ml-3 text-gray-600 dark:text-gray-300">四柱推命を計算中...</span>
                     </div>
                 @else
@@ -61,19 +61,19 @@
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600" role="table" aria-label="四柱推命表">
                                 <thead>
-                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">柱</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">天干地支</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">蔵干</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">天干通変星</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">蔵干通変星</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">十二運星</th>
+                                    <tr class="bg-zinc-100 dark:bg-zinc-800">
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">柱</th>
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">天干地支</th>
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">蔵干</th>
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">天干通変星</th>
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">蔵干通変星</th>
+                                        <th scope="col" class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-zinc-900 dark:text-zinc-100">十二運星</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">年柱</th>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['year']['stem'] }}{{ $chartData['year']['branch'] }}</td>
+                                        <td class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-[#af90e2] dark:text-[#af90e2]">{{ $chartData['year']['stem'] }}{{ $chartData['year']['branch'] }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStems']) }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['year']['stemTss'] ?? '' }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStemsTss']) }}</td>
@@ -132,7 +132,7 @@
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
                                 <thead>
-                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                    <tr class="bg-zinc-100 dark:bg-zinc-800">
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">年齢帯</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">干支</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">通変星</th>
@@ -161,7 +161,7 @@
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
                                 <thead>
-                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                    <tr class="bg-zinc-100 dark:bg-zinc-800">
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">西暦</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">年干支</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">通変星</th>
@@ -190,7 +190,7 @@
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
                                 <thead>
-                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                    <tr class="bg-zinc-100 dark:bg-zinc-800">
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">西暦</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">月</th>
                                         <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">月干支</th>
