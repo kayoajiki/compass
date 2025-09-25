@@ -11,6 +11,61 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+// 一時的なテストルート（認証不要）
+Route::get('/test-four-pillars', function () {
+    $fourPillarsService = app(\App\Services\FourPillars\FourPillarsService::class);
+    $params = new \App\Services\FourPillars\DTOs\BuildParams(
+        birthDate: '1992-05-17',
+        birthTime: '15:02',
+        sex: \App\Services\FourPillars\Data\Sex::Male,
+        annualFrom: date('Y'),
+        annualTo: date('Y') + 10,
+        monthlyFrom: date('Y-m'),
+        monthlyTo: date('Y-m', strtotime('+12 months'))
+    );
+    
+    $result = $fourPillarsService->build($params);
+    
+    return response()->json([
+        'year' => [
+            'stem' => $result->year->stem->value,
+            'branch' => $result->year->branch->value,
+            'hiddenStems' => array_map(fn($x) => $x->value, $result->year->hiddenStems),
+            'stemTss' => $result->year->stemTss,
+            'hiddenStemsTss' => $result->year->hiddenStemsTss,
+            'twelveStage' => $result->year->twelveStage
+        ],
+        'month' => [
+            'stem' => $result->month->stem->value,
+            'branch' => $result->month->branch->value,
+            'hiddenStems' => array_map(fn($x) => $x->value, $result->month->hiddenStems),
+            'stemTss' => $result->month->stemTss,
+            'hiddenStemsTss' => $result->month->hiddenStemsTss,
+            'twelveStage' => $result->month->twelveStage
+        ],
+        'day' => [
+            'stem' => $result->day->stem->value,
+            'branch' => $result->day->branch->value,
+            'hiddenStems' => array_map(fn($x) => $x->value, $result->day->hiddenStems),
+            'stemTss' => $result->day->stemTss,
+            'hiddenStemsTss' => $result->day->hiddenStemsTss,
+            'twelveStage' => $result->day->twelveStage
+        ],
+        'hour' => $result->hour ? [
+            'stem' => $result->hour->stem->value,
+            'branch' => $result->hour->branch->value,
+            'hiddenStems' => array_map(fn($x) => $x->value, $result->hour->hiddenStems),
+            'stemTss' => $result->hour->stemTss,
+            'hiddenStemsTss' => $result->hour->hiddenStemsTss,
+            'twelveStage' => $result->hour->twelveStage
+        ] : null,
+        'fiveElementsCount' => $result->fiveElementsCount,
+        'daiun' => $result->daiun,
+        'annual' => $result->annual,
+        'monthly' => $result->monthly
+    ]);
+});
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified', 'profile.completed'])
     ->name('dashboard');
@@ -167,5 +222,8 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+
+// Four Pillars Demo Route
+Route::get('/fourpillars/demo', [App\Http\Controllers\FourPillarsController::class, 'show'])->name('fourpillars.demo');
 
 require __DIR__.'/auth.php';

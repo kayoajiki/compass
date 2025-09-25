@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-gray-50 dark:bg-zinc-900">
     <div class="py-8">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back to Dashboard Button -->
             <div class="mb-6">
                 <a href="{{ route('dashboard') }}" class="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 transition-colors">
@@ -28,180 +28,307 @@
                         <p class="text-gray-600 dark:text-gray-300">生年月日時から導き出す本質</p>
                     </div>
 
-                    <!-- 四柱推命表（無料） -->
+                    <!-- 四柱推命表 -->
                     <div class="mb-8">
-                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">四柱推命表</h2>
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">命式表</h2>
                         <div class="overflow-x-auto">
                             <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600" role="table" aria-label="四柱推命表">
                                 <thead>
                                     <tr class="bg-purple-50 dark:bg-purple-900/20">
                                         <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">柱</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">天干</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">地支</th>
-                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">納音</th>
+                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">天干地支</th>
+                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">蔵干</th>
+                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">天干通変星</th>
+                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">蔵干通変星</th>
+                                        <th scope="col" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">十二運星</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">年柱</th>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['year']['stem'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['year']['branch'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">海中金</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['year']['stem'] }}{{ $chartData['year']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStems']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['year']['stemTss'] ?? '' }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStemsTss']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['year']['twelveStage'] ?? '' }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">月柱</th>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['month']['stem'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['month']['branch'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">炉中火</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['month']['stem'] }}{{ $chartData['month']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['month']['hiddenStems']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['month']['stemTss'] ?? '' }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['month']['hiddenStemsTss']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['month']['twelveStage'] ?? '' }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">日柱</th>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['day']['stem'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['day']['branch'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">路傍土</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['day']['stem'] }}{{ $chartData['day']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['day']['hiddenStems']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['day']['stemTss'] ?? '' }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['day']['hiddenStemsTss']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['day']['twelveStage'] ?? '' }}</td>
                                     </tr>
+                                    @if($chartData['hour'])
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">時柱</th>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['hour']['stem'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['hour']['branch'] }}</td>
-                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">屋上土</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-purple-600 dark:text-purple-400">{{ $chartData['hour']['stem'] }}{{ $chartData['hour']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['hour']['hiddenStems']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['hour']['stemTss'] ?? '' }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['hour']['hiddenStemsTss']) }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['hour']['twelveStage'] ?? '' }}</td>
                                     </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- 鑑定サマリー（無料） -->
+                    <!-- 五行バランス -->
+                    @if(!empty($fiveElementsCount))
+                    <div class="mb-8">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">五行バランス</h2>
+                        <div class="grid grid-cols-5 gap-4 max-w-md mx-auto">
+                            @foreach($fiveElementsCount as $element => $count)
+                            <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
+                                <div class="text-2xl font-bold text-purple-600 dark:text-purple-400">{{ $count }}</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-300">{{ $element }}</div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- 大運 -->
+                    @if(!empty($daiun))
+                    <div class="mb-8">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">大運</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
+                                <thead>
+                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">年齢帯</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">干支</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">通変星</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">十二運</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($daiun as $du)
+                                    <tr>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $du['start_age'] }}才〜{{ $du['end_age'] }}才</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm font-bold text-purple-600 dark:text-purple-400">{{ $du['pillar']['stem'] }}{{ $du['pillar']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $du['tss'] ?? '' }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $du['twelveStage'] ?? '' }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- 年運 -->
+                    @if(!empty($annual))
+                    <div class="mb-8">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">年運</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
+                                <thead>
+                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">西暦</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">年干支</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">通変星</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">十二運</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($annual as $row)
+                                    <tr>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $row['year'] }}年</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm font-bold text-purple-600 dark:text-purple-400">{{ $row['pillar']['stem'] }}{{ $row['pillar']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $row['tss'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $row['twelveStage'] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- 月運 -->
+                    @if(!empty($monthly))
+                    <div class="mb-8">
+                        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">月運</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full border-collapse border border-gray-300 dark:border-zinc-600">
+                                <thead>
+                                    <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">西暦</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">月</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">月干支</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">通変星</th>
+                                        <th class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">十二運</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($monthly as $row)
+                                    @php [$y,$m]=explode('-',$row['ym']); @endphp
+                                    <tr>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $y }}年</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ intval($m) }}月</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm font-bold text-purple-600 dark:text-purple-400">{{ $row['pillar']['stem'] }}{{ $row['pillar']['branch'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $row['tss'] }}</td>
+                                        <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $row['twelveStage'] }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- 鑑定サマリー -->
                     <div class="mb-8">
                         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">鑑定サマリー</h2>
-                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-center">
-                            あなたの干支「甲子・丙寅・庚午・丁亥」から読み取れる今月の運勢は、新しい挑戦に向けた準備期間として最適です。特に金運と仕事運に注目すべき時期で、慎重な判断と積極的な行動のバランスが重要になります。
-                        </p>
+                        <div class="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg p-6 border border-purple-200 dark:border-purple-700">
+                            <div class="text-center mb-4">
+                                <div class="inline-flex items-center px-4 py-2 bg-purple-100 dark:bg-purple-800 rounded-full text-purple-800 dark:text-purple-200 text-sm font-medium">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    基本情報
+                                </div>
+                            </div>
+                            <div class="space-y-3 text-gray-700 dark:text-gray-300">
+                                <p class="text-center">
+                                    <span class="font-semibold text-purple-600 dark:text-purple-400">{{ $chartData['day']['stem'] }}{{ $chartData['day']['branch'] }}</span> 
+                                    の日柱を持つあなたは、<span class="font-semibold">{{ $chartData['day']['stemTss'] ?? '比肩' }}</span>の性質が強く表れています。
+                                </p>
+                                <p class="text-center">
+                                    五行バランスでは<span class="font-semibold text-purple-600 dark:text-purple-400">
+                                    @if(isset($fiveElementsCount))
+                                        @php
+                                            $maxElement = array_keys($fiveElementsCount, max($fiveElementsCount));
+                                            $minElement = array_keys($fiveElementsCount, min($fiveElementsCount));
+                                        @endphp
+                                        {{ $maxElement[0] }}({{ max($fiveElementsCount) }})が最も強く
+                                    @else
+                                        金(5)が最も強く
+                                    @endif
+                                    </span>、全体的にバランスの取れた命式となっています。
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- 点線区切り -->
-                    <div class="border-t-2 border-dashed border-gray-300 dark:border-gray-600 my-8"></div>
-
-                    <!-- note風ペイウォール -->
-                    <div class="text-center py-8">
-                        <div class="mb-6">
-                            <p class="text-lg font-bold text-gray-900 dark:text-white mb-2">ここから先は</p>
-                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">378字 / 1画像</p>
-                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-6">¥980</div>
-                        </div>
-                        
-                        <!-- ぼかし表示 -->
-                        <div class="relative mb-6">
-                            <div class="opacity-30 blur-sm select-none pointer-events-none">
-                                <div class="space-y-6 mb-8">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                                            本質的な性格
-                                        </h3>
-                                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            甲子の年柱を持つあなたは、リーダーシップと革新性を兼ね備えた性格です。丙寅の月柱は創造性と行動力を示し、庚午の日柱は正義感と情熱的な一面を表しています。丁亥の時柱は直感力と協調性に長けており、これらの要素が組み合わさって、バランスの取れた人格を形成しています。
-                                        </p>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                                            今月の流れ
-                                        </h3>
-                                        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-                                            今月は特に金運が上昇する時期です。新しい投資や副業の検討に適したタイミングですが、庚午の特性を活かして慎重な判断を心がけてください。また、人間関係においても丁亥の協調性が発揮され、チームワークが重要になる場面で力を発揮できるでしょう。
-                                        </p>
+                    <!-- 区切り線 -->
+                    <div class="border-t border-dashed border-gray-300 dark:border-gray-600 my-8"></div>
+                    
+                    <!-- ここから先の表示 -->
+                    <div class="text-center mb-6">
+                        <span class="text-gray-600 dark:text-gray-400 text-sm">ここから先は</span>
+                    </div>
+                    
+                    <!-- 文字数と画像数の表示 -->
+                    <div class="text-center mb-4">
+                        <span class="text-gray-500 dark:text-gray-400 text-sm">412字 / 1画像</span>
+                    </div>
+                    
+                    <!-- 価格表示 -->
+                    <div class="text-center mb-6">
+                        <span class="text-3xl font-bold text-gray-900 dark:text-white">¥980</span>
+                    </div>
+                    
+                    <!-- 透けて見えるコンテンツ -->
+                    <div class="relative mb-8">
+                        <!-- ぼかし効果を適用したコンテンツ -->
+                        <div class="blur-sm select-none pointer-events-none opacity-60">
+                            <div class="space-y-4 text-gray-700 dark:text-gray-300">
+                                <p>
+                                    <span class="font-semibold text-purple-600 dark:text-purple-400">{{ $chartData['day']['stem'] }}{{ $chartData['day']['branch'] }}</span>の日柱を持つあなたは、
+                                    <span class="font-semibold">{{ $chartData['day']['stemTss'] ?? '比肩' }}</span>の性質により、協調性があり、人との調和を大切にする性格です。
+                                </p>
+                                <p>
+                                    また、<span class="font-semibold">{{ $chartData['day']['twelveStage'] ?? '建禄' }}</span>の十二運星の影響で、
+                                    物事に対して積極的で行動力のある一面も持っています。
+                                </p>
+                                <p>
+                                    五行バランスから見ると、あなたの人生には
+                                    @if(isset($fiveElementsCount))
+                                        @php
+                                            $maxElement = array_keys($fiveElementsCount, max($fiveElementsCount));
+                                        @endphp
+                                        <span class="font-semibold text-purple-600 dark:text-purple-400">{{ $maxElement[0] }}</span>の要素が強く影響し、
+                                    @else
+                                        <span class="font-semibold text-purple-600 dark:text-purple-400">金</span>の要素が強く影響し、
+                                    @endif
+                                    安定感と堅実さを重視する傾向があります。
+                                </p>
+                                
+                                <!-- スコア表示セクション -->
+                                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-zinc-700">
+                                    <div class="grid grid-cols-5 gap-4">
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">94</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">総合運</div>
+                                            <div class="h-1 bg-purple-600 rounded"></div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">89</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">恋愛運</div>
+                                            <div class="h-1 bg-purple-600 rounded"></div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">82</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">仕事運</div>
+                                            <div class="h-1 bg-purple-600 rounded"></div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">96</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">金運</div>
+                                            <div class="h-1 bg-purple-600 rounded"></div>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="text-3xl font-bold text-gray-900 dark:text-white mb-1">87</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-2">健康運</div>
+                                            <div class="h-1 bg-purple-600 rounded"></div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="mb-8">
-                                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">運勢スコア</h2>
-                                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                                        <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                                            <div class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Communication</div>
-                                            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">85</div>
-                                            <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-2">
-                                                <div class="bg-purple-600 h-2 rounded-full" style="width: 85%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                                            <div class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Money</div>
-                                            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">78</div>
-                                            <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-2">
-                                                <div class="bg-purple-600 h-2 rounded-full" style="width: 78%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                                            <div class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Action</div>
-                                            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">92</div>
-                                            <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-2">
-                                                <div class="bg-purple-600 h-2 rounded-full" style="width: 92%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                                            <div class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Health</div>
-                                            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">73</div>
-                                            <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-2">
-                                                <div class="bg-purple-600 h-2 rounded-full" style="width: 73%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center p-4 bg-gray-50 dark:bg-zinc-800 rounded-lg">
-                                            <div class="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Love</div>
-                                            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">69</div>
-                                            <div class="w-full bg-gray-200 dark:bg-zinc-600 rounded-full h-2">
-                                                <div class="bg-purple-600 h-2 rounded-full" style="width: 69%"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-8">
-                                    <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4 text-center">開運アドバイス</h2>
-                                    <div class="space-y-4">
-                                        <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                            <h3 class="font-semibold text-purple-900 dark:text-purple-100 mb-2">
-                                                今月の一歩目
-                                            </h3>
-                                            <p class="text-purple-800 dark:text-purple-200">
-                                                新しいプロジェクトや学習に取り組むことで、潜在能力を開花させるチャンスです。特に創造性を活かせる分野での活動が吉。
-                                            </p>
-                                        </div>
-                                        <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                            <h3 class="font-semibold text-purple-900 dark:text-purple-100 mb-2">
-                                                注意点
-                                            </h3>
-                                            <p class="text-purple-800 dark:text-purple-200">
-                                                完璧主義に陥りすぎず、時には周囲の意見に耳を傾けることも大切です。バランスの取れた判断を心がけてください。
-                                            </p>
-                                        </div>
-                                        <div class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg border border-purple-200 dark:border-purple-700">
-                                            <h3 class="font-semibold text-purple-900 dark:text-purple-100 mb-2">
-                                                開運のポイント
-                                            </h3>
-                                            <p class="text-purple-800 dark:text-purple-200">
-                                                朝の時間を有効活用し、東向きで瞑想や読書を行うことで運気が上昇します。また、緑色のアイテムを持つと吉。
-                                            </p>
-                                        </div>
-                                    </div>
+                                
+                                <div class="mt-6">
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">開運アドバイス</h4>
+                                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                                        <li class="flex items-start">
+                                            <span class="text-purple-600 dark:text-purple-400 mr-2">•</span>
+                                            <span>あなたの強みを活かすために、協調性を重視した環境で活動することをお勧めします。</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-purple-600 dark:text-purple-400 mr-2">•</span>
+                                            <span>大運の流れを見ると、今後10年間は特に重要な転機が訪れる可能性があります。</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-purple-600 dark:text-purple-400 mr-2">•</span>
+                                            <span>年運・月運の詳細な分析により、最適なタイミングで行動を起こすことができます。</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
-                        <a href="{{ route('pricing') }}" 
-                           class="inline-block w-full max-w-xs mx-auto bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 rounded-lg font-medium transition-colors"
-                           aria-label="サブスク登録ページに移動">
+                        
+                        <!-- オーバーレイ -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/80 to-white dark:via-zinc-900/80 dark:to-zinc-900"></div>
+                    </div>
+                    
+                    <!-- 購入ボタン -->
+                    <div class="text-center">
+                        <a href="{{ route('four-pillars.reading') }}" 
+                           class="inline-block w-full max-w-md bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200 text-center">
                             購入手続きへ
                         </a>
                     </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                        <button 
-                            wire:click="loadChartData"
-                            class="border border-purple-600 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 px-6 py-3 rounded-lg font-medium transition-colors"
-                        >
-                            再計算
-                        </button>
-                    </div>
                 @endif
             </div>
         </div>
