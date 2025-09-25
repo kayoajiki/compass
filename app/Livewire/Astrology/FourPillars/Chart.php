@@ -17,6 +17,7 @@ class Chart extends Component
     public array $annual = [];
     public array $monthly = [];
     public bool $isLoading = true;
+    public bool $profileIncomplete = false;
 
     public function mount()
     {
@@ -35,29 +36,17 @@ class Chart extends Component
         try {
             $fourPillarsService = app(FourPillarsService::class);
             
-            // ユーザーのプロフィールから生年月日・時刻・性別を取得
+            // ユーザーのプロフィールから四柱推命の命式を作成
             $user = Auth::user();
-            if ($user && $user->profile) {
-                $birthDate = $user->profile->birth_date;
-                $birthTime = $user->profile->birth_time;
-                $sex = $user->profile->sex === 'male' ? Sex::Male : Sex::Female;
+            if ($user && $user->profile && $user->profile->isComplete()) {
+                $result = $fourPillarsService->buildFromProfile($user->profile);
+                $this->profileIncomplete = false;
             } else {
-                // 認証されていない場合はデモデータを使用
+                // プロフィールが不完全な場合はデモデータを使用
+                $this->profileIncomplete = true;
                 $this->loadDemoData();
                 return;
             }
-
-            $params = new BuildParams(
-                birthDate: $birthDate,
-                birthTime: $birthTime,
-                sex: $sex,
-                annualFrom: date('Y'),
-                annualTo: date('Y') + 10,
-                monthlyFrom: date('Y-m'),
-                monthlyTo: date('Y-m', strtotime('+12 months'))
-            );
-
-            $result = $fourPillarsService->build($params);
             
             // データを配列形式に変換
             $this->chartData = [

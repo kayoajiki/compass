@@ -52,6 +52,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's profile
+     */
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
      * Get the user's initials
      */
     public function initials(): string

@@ -14,6 +14,7 @@ class Profile extends Model
         'birth_date',
         'birth_time',
         'birth_place_pref',
+        'sex',
         'longitude_adjust',
         'is_completed',
         'completed_at',
@@ -53,7 +54,8 @@ class Profile extends Model
     {
         return !empty($this->name) && 
                !empty($this->birth_date) && 
-               !empty($this->birth_place_pref);
+               !empty($this->birth_place_pref) &&
+               !empty($this->sex);
     }
 
     /**

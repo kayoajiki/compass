@@ -5,6 +5,7 @@ namespace App\Services\FourPillars;
 use App\Services\FourPillars\DTOs\{BuildParams, FourPillarsResult};
 use App\Services\FourPillars\Data\{Sex, HeavenlyStem};
 use App\Services\FourPillars\Luck\{DaiunBuilder, AnnualLuckBuilder, MonthlyLuckBuilder};
+use App\Models\Profile;
 use DateTimeImmutable;
 use DateTimeZone;
 
@@ -67,6 +68,28 @@ class FourPillarsService
         }
         
         return new FourPillarsResult($year, $month, $day, $hour, $five, $daiunRows, $annualRows, $monthlyRows);
+    }
+
+    /**
+     * プロフィール情報から四柱推命の命式を作成
+     */
+    public function buildFromProfile(Profile $profile): FourPillarsResult
+    {
+        // プロフィール情報からBuildParamsを作成
+        $params = new BuildParams(
+            birthDate: $profile->birth_date->format('Y-m-d'),
+            birthTime: $profile->birth_time ? $profile->birth_time->format('H:i') : null,
+            sex: Sex::from($profile->sex),
+            timezone: 'Asia/Tokyo',
+            dayPillarCutover: '23:00',
+            solarTermSource: 'approx',
+            annualFrom: date('Y'),
+            annualTo: date('Y') + 10,
+            monthlyFrom: date('Y-m'),
+            monthlyTo: date('Y-m', strtotime('+12 months'))
+        );
+
+        return $this->build($params);
     }
 
     private function tssName(string $dayStem, string $targetStem): string
