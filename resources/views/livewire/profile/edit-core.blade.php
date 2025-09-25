@@ -198,6 +198,25 @@
                     @enderror
                 </div>
 
+                <!-- 性別 -->
+                <div>
+                    <label for="sex" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        性別 <span class="text-red-500">*</span>
+                    </label>
+                    <select 
+                        id="sex"
+                        wire:model="sex"
+                        class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-zinc-800 dark:text-white @error('sex') border-red-500 @enderror"
+                    >
+                        <option value="">性別を選択してください</option>
+                        <option value="male">男性</option>
+                        <option value="female">女性</option>
+                    </select>
+                    @error('sex')
+                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
             </div>
 
             <!-- Action Buttons -->

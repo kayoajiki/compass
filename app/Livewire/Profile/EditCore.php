@@ -24,6 +24,7 @@ class EditCore extends Component
     public $birth_hour;
     public $birth_minute;
     public $birth_place_pref;
+    public $sex = 'male';
     // longitude_adjust プロパティを削除（自動調整に変更）
     public $is_birth_time_unknown = true;
     public $is_editing = true; // 常に編集可能にする
@@ -38,6 +39,7 @@ class EditCore extends Component
         'birth_hour' => 'nullable|integer|min:0|max:23',
         'birth_minute' => 'nullable|integer|min:0|max:59',
         'birth_place_pref' => 'required|string|in:01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47',
+        'sex' => 'required|in:male,female',
     ];
 
     protected $messages = [
@@ -57,6 +59,8 @@ class EditCore extends Component
         'birth_minute.max' => '分は59以下で入力してください。',
         'birth_place_pref.required' => '出生地を選択してください。',
         'birth_place_pref.in' => '有効な都道府県を選択してください。',
+        'sex.required' => '性別を選択してください。',
+        'sex.in' => '有効な性別を選択してください。',
     ];
 
     public function mount()
@@ -69,6 +73,7 @@ class EditCore extends Component
             $this->birth_date = $this->profile->birth_date?->format('Y-m-d');
             $this->birth_time = $this->profile->birth_time?->format('H:i');
             $this->birth_place_pref = $this->profile->birth_place_pref;
+            $this->sex = $this->profile->sex ?? 'male';
             $this->is_birth_time_unknown = $this->profile->isBirthTimeUnknown();
             
             // 出生時刻を時・分に分解
@@ -96,6 +101,7 @@ class EditCore extends Component
             $this->birth_date = $this->profile->birth_date?->format('Y-m-d');
             $this->birth_time = $this->profile->birth_time?->format('H:i');
             $this->birth_place_pref = $this->profile->birth_place_pref;
+            $this->sex = $this->profile->sex ?? 'male';
             $this->is_birth_time_unknown = $this->profile->isBirthTimeUnknown();
             
             // 出生時刻を時・分に分解
@@ -142,6 +148,7 @@ class EditCore extends Component
                 $updateData = [
                     'birth_time' => $this->birth_time,
                     'birth_place_pref' => $this->birth_place_pref,
+                    'sex' => $this->sex,
                 ];
                 
                 // 初回登録時のみname/birth_dateを設定
@@ -159,6 +166,7 @@ class EditCore extends Component
                     'birth_date' => $this->birth_date,
                     'birth_time' => $this->birth_time,
                     'birth_place_pref' => $this->birth_place_pref,
+                    'sex' => $this->sex,
                 ]);
             }
 
