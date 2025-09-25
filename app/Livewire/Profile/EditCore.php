@@ -24,7 +24,7 @@ class EditCore extends Component
     public $birth_hour;
     public $birth_minute;
     public $birth_place_pref;
-    public $sex = 'male';
+    public $sex = '';
     // longitude_adjust プロパティを削除（自動調整に変更）
     public $is_birth_time_unknown = true;
     public $is_editing = true; // 常に編集可能にする
@@ -73,7 +73,7 @@ class EditCore extends Component
             $this->birth_date = $this->profile->birth_date?->format('Y-m-d');
             $this->birth_time = $this->profile->birth_time?->format('H:i');
             $this->birth_place_pref = $this->profile->birth_place_pref;
-            $this->sex = $this->profile->sex ?? 'male';
+            $this->sex = $this->profile->sex ?? '';
             $this->is_birth_time_unknown = $this->profile->isBirthTimeUnknown();
             
             // 出生時刻を時・分に分解
@@ -101,7 +101,7 @@ class EditCore extends Component
             $this->birth_date = $this->profile->birth_date?->format('Y-m-d');
             $this->birth_time = $this->profile->birth_time?->format('H:i');
             $this->birth_place_pref = $this->profile->birth_place_pref;
-            $this->sex = $this->profile->sex ?? 'male';
+            $this->sex = $this->profile->sex ?? '';
             $this->is_birth_time_unknown = $this->profile->isBirthTimeUnknown();
             
             // 出生時刻を時・分に分解
