@@ -54,7 +54,7 @@
             <!-- 送信ボタン -->
             <button wire:click="submit" 
                     wire:loading.attr="disabled"
-                    class="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                    class="w-full bg-[#4e3291] hover:bg-[#9a89b4] disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg font-medium transition-colors"
                     aria-label="気分と日記を送信">
                 <span wire:loading.remove>送信する</span>
                 <span wire:loading>送信中...</span>
@@ -80,7 +80,7 @@
             <h4 class="text-lg font-medium text-gray-900 dark:text-white mb-2">今日は1回まで</h4>
             <p class="text-gray-600 dark:text-gray-300 mb-4">サブスク登録で無制限にご利用いただけます</p>
             <a href="{{ route('pricing') }}" 
-               class="inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+               class="inline-block bg-[#4e3291] hover:bg-[#9a89b4] text-white px-6 py-2 rounded-lg font-medium transition-colors"
                aria-label="サブスク登録ページに移動">
                 サブスクに登録する
             </a>

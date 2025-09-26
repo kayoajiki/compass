@@ -3,7 +3,7 @@
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Back to Dashboard Button -->
             <div class="mb-6">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-[#af90e2] hover:text-[#4f2fa0] dark:text-[#af90e2] dark:hover:text-[#d5cabd] transition-colors">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center text-[#4e3291] hover:text-[#9a89b4] dark:text-[#4e3291] dark:hover:text-[#9a89b4] transition-colors">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
@@ -15,7 +15,7 @@
                 @if($isLoading)
                     <!-- Loading state -->
                     <div class="flex items-center justify-center py-12">
-                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#af90e2]"></div>
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4e3291]"></div>
                         <span class="ml-3 text-gray-600 dark:text-gray-300">四柱推命を計算中...</span>
                     </div>
                 @else
@@ -73,7 +73,7 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row" class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-zinc-800">年柱</th>
-                                        <td class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-[#af90e2] dark:text-[#af90e2]">{{ $chartData['year']['stem'] }}{{ $chartData['year']['branch'] }}</td>
+                                        <td class="border border-zinc-300 dark:border-zinc-600 px-4 py-3 text-center text-lg font-bold text-[#4e3291] dark:text-[#4e3291]">{{ $chartData['year']['stem'] }}{{ $chartData['year']['branch'] }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStems']) }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ $chartData['year']['stemTss'] ?? '' }}</td>
                                         <td class="border border-gray-300 dark:border-zinc-600 px-4 py-3 text-center text-sm text-gray-600 dark:text-gray-300">{{ implode('・', $chartData['year']['hiddenStemsTss']) }}</td>

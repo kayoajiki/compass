@@ -12,48 +12,48 @@
     --font-sans: 'Instrument Sans', 'Hiragino Sans', 'Yu Gothic', 'Meiryo', 'Noto Sans JP', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     /* 新しいカラーパレット - 神秘性と清潔感を両立 */
-    --color-mystic-purple: #af90e2;      /* メインの神秘的な紫 */
-    --color-deep-purple: #4f2fa0;        /* 深い紫（アクセント） */
-    --color-cream: #fefedf;              /* 清潔感のあるクリーム色 */
-    --color-warm-beige: #d5cabd;         /* 温かみのあるベージュ */
+    --color-mystic-deep: #4e3291;        /* 深い神秘的な紫（メインアクセント） */
+    --color-mystic-light: #9a89b4;       /* 薄い神秘的な紫（ホバー・補助） */
+    --color-cream-white: #fdf7ff;        /* 清潔感のあるクリーム白（背景） */
+    --color-warm-cream: #fffade;         /* 温かみのあるクリーム（アクセント背景） */
 
-    /* グレースケール（既存のzincを調整） */
-    --color-zinc-50: #fefedf;            /* クリーム色に変更 */
-    --color-zinc-100: #f9f8f5;           /* 薄いクリーム */
-    --color-zinc-200: #f0ede8;           /* 薄いベージュ */
-    --color-zinc-300: #e6e2db;           /* ベージュ */
-    --color-zinc-400: #d5cabd;           /* 温かみのあるベージュ */
-    --color-zinc-500: #8b7d6b;           /* 中間色 */
-    --color-zinc-600: #6b5d4b;           /* ダークグレー */
-    --color-zinc-700: #4f2fa0;           /* 深い紫 */
-    --color-zinc-800: #3d2470;           /* より深い紫 */
-    --color-zinc-900: #2a1a4f;           /* 非常に深い紫 */
+    /* グレースケール（新しい色味に調整） */
+    --color-zinc-50: #fffade;            /* 温かみのあるクリーム */
+    --color-zinc-100: #fdf7ff;           /* 清潔感のあるクリーム白 */
+    --color-zinc-200: #f0e8f5;           /* 薄い紫がかったグレー */
+    --color-zinc-300: #e0d5e8;           /* 中間の紫がかったグレー */
+    --color-zinc-400: #9a89b4;           /* 薄い神秘的な紫 */
+    --color-zinc-500: #7a6b8f;           /* 中間色 */
+    --color-zinc-600: #5a4a6f;           /* ダークグレー */
+    --color-zinc-700: #4e3291;           /* 深い神秘的な紫 */
+    --color-zinc-800: #3d256f;           /* より深い紫 */
+    --color-zinc-900: #2c1a4f;           /* 非常に深い紫 */
     --color-zinc-950: #1a0f2f;           /* 最深の紫 */
 
     /* アクセントカラー */
-    --color-accent: var(--color-mystic-purple);
-    --color-accent-content: var(--color-deep-purple);
-    --color-accent-foreground: var(--color-cream);
+    --color-accent: var(--color-mystic-deep);
+    --color-accent-content: var(--color-mystic-light);
+    --color-accent-foreground: var(--color-cream-white);
 }
 
 @layer theme {
     .dark {
         /* ダークモード用のカラーパレット */
         --color-zinc-50: #1a0f2f;           /* 最深の紫を背景に */
-        --color-zinc-100: #2a1a4f;          /* 非常に深い紫 */
-        --color-zinc-200: #3d2470;          /* より深い紫 */
-        --color-zinc-300: #4f2fa0;          /* 深い紫 */
-        --color-zinc-400: #6b5d4b;          /* ダークグレー */
-        --color-zinc-500: #8b7d6b;          /* 中間色 */
-        --color-zinc-600: #d5cabd;          /* 温かみのあるベージュ */
-        --color-zinc-700: #e6e2db;          /* ベージュ */
-        --color-zinc-800: #f0ede8;          /* 薄いベージュ */
-        --color-zinc-900: #f9f8f5;          /* 薄いクリーム */
-        --color-zinc-950: #fefedf;          /* クリーム色 */
+        --color-zinc-100: #2c1a4f;          /* 非常に深い紫 */
+        --color-zinc-200: #3d256f;          /* より深い紫 */
+        --color-zinc-300: #4e3291;          /* 深い神秘的な紫 */
+        --color-zinc-400: #5a4a6f;          /* ダークグレー */
+        --color-zinc-500: #7a6b8f;          /* 中間色 */
+        --color-zinc-600: #9a89b4;          /* 薄い神秘的な紫 */
+        --color-zinc-700: #e0d5e8;          /* 中間の紫がかったグレー */
+        --color-zinc-800: #f0e8f5;          /* 薄い紫がかったグレー */
+        --color-zinc-900: #fdf7ff;          /* 清潔感のあるクリーム白 */
+        --color-zinc-950: #fffade;          /* 温かみのあるクリーム */
 
-        --color-accent: var(--color-mystic-purple);
-        --color-accent-content: var(--color-cream);
-        --color-accent-foreground: var(--color-deep-purple);
+        --color-accent: var(--color-mystic-light);
+        --color-accent-content: var(--color-cream-white);
+        --color-accent-foreground: var(--color-mystic-deep);
     }
 }
 

@@ -230,7 +230,7 @@
                 </button>
                 <button 
                     type="submit"
-                    class="bg-[#af90e2] hover:bg-[#4f2fa0] text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
+                    class="bg-[#4e3291] hover:bg-[#9a89b4] text-white px-6 py-2 rounded-lg text-sm font-medium transition-colors"
                 >
                     保存する
                 </button>

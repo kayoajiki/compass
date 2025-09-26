@@ -79,16 +79,16 @@
             color: #d1d5db;
         }
         .text-purple-600 {
-            color: #9333ea;
+            color: #4e3291;
         }
         .text-purple-400 {
-            color: #c084fc;
+            color: #9a89b4;
         }
         .bg-purple-600 {
-            background-color: #9333ea;
+            background-color: #4e3291;
         }
         .hover\\:bg-purple-700:hover {
-            background-color: #7c3aed;
+            background-color: #9a89b4;
         }
         .text-white {
             color: #ffffff;
@@ -143,7 +143,7 @@
             border-bottom-width: 1px;
         }
         .border-purple-100 {
-            border-color: #f3e8ff;
+            border-color: #9a89b4;
         }
         .dark\\:bg-zinc-900\\/80 {
             background-color: rgba(24, 24, 27, 0.8);
@@ -158,12 +158,12 @@
             background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
         }
         .from-purple-50 {
-            --tw-gradient-from: #faf5ff;
-            --tw-gradient-to: rgba(250, 245, 255, 0);
+            --tw-gradient-from: #fffade;
+            --tw-gradient-to: rgba(255, 250, 222, 0);
             --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
         }
         .to-amber-50 {
-            --tw-gradient-to: #fffbeb;
+            --tw-gradient-to: #fdf7ff;
         }
         .dark\\:from-zinc-900 {
             --tw-gradient-from: #18181b;
@@ -249,16 +249,16 @@
             border-width: 1px;
         }
         .border-purple-600 {
-            border-color: #9333ea;
+            border-color: #4e3291;
         }
         .hover\\:bg-purple-50:hover {
-            background-color: #faf5ff;
+            background-color: #fffade;
         }
         .dark\\:text-purple-400 {
-            color: #c084fc;
+            color: #9a89b4;
         }
         .dark\\:hover\\:bg-purple-900\\/20:hover {
-            background-color: rgba(147, 51, 234, 0.2);
+            background-color: rgba(78, 50, 145, 0.2);
         }
         .py-20 {
             padding-top: 5rem;
@@ -399,8 +399,8 @@
         </div>
         
         <!-- Decorative elements -->
-        <div class="absolute top-20 right-10 w-20 h-20 bg-purple-200/30 rounded-full blur-xl"></div>
-        <div class="absolute bottom-20 left-10 w-32 h-32 bg-amber-200/30 rounded-full blur-xl"></div>
+        <div class="absolute top-20 right-10 w-20 h-20 bg-[#faeaff]/30 rounded-full blur-xl"></div>
+        <div class="absolute bottom-20 left-10 w-32 h-32 bg-[#faeaff]/30 rounded-full blur-xl"></div>
     </div>
 
     <!-- Features Section -->

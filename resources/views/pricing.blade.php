@@ -17,7 +17,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-[#4e3291] dark:text-gray-300 dark:hover:text-[#9a89b4] px-3 py-2 rounded-md text-sm font-medium">
                             ダッシュボード
                         </a>
                         @if($hasActiveSubscription)
@@ -26,10 +26,10 @@
                             </span>
                         @endif
                     @else
-                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-[#4e3291] dark:text-gray-300 dark:hover:text-[#9a89b4] px-3 py-2 rounded-md text-sm font-medium">
                             ログイン
                         </a>
-                        <a href="{{ route('register') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                        <a href="{{ route('register') }}" class="bg-[#4e3291] hover:bg-[#9a89b4] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             無料で始める
                         </a>
                     @endauth
@@ -151,7 +151,7 @@
                             現在のプラン
                         </span>
                     @else
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors">
+                        <button class="w-full bg-[#4e3291] hover:bg-[#9a89b4] text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors">
                             月額プランを選択
                         </button>
                     @endif
@@ -200,7 +200,7 @@
                             現在のプラン
                         </span>
                     @else
-                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors">
+                        <button class="w-full bg-[#4e3291] hover:bg-[#9a89b4] text-white px-6 py-3 rounded-lg text-sm font-medium transition-colors">
                             年額プランを選択
                         </button>
                     @endif

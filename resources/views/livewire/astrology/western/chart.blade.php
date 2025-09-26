@@ -188,7 +188,7 @@
                     <div class="flex flex-col sm:flex-row gap-3 justify-center">
                         <button 
                             wire:click="loadChartData"
-                            class="border border-purple-600 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 px-6 py-3 rounded-lg font-medium transition-colors"
+                            class="border border-[#4e3291] text-[#4e3291] hover:bg-[#fffade] dark:text-[#9a89b4] dark:hover:bg-[#4e3291]/20 px-6 py-3 rounded-lg font-medium transition-colors"
                         >
                             再計算
                         </button>
