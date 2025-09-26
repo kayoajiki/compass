@@ -79,6 +79,11 @@ php artisan serve
 - `STRIPE_SECRET`: Stripeシークレットキー
 - `STRIPE_WEBHOOK_SECRET`: Stripe Webhookシークレット
 
+### Dify AI
+- `DIFY_ENDPOINT`: Dify API エンドポイント（例：https://api.dify.ai/v1/workflows/run）
+- `DIFY_API_KEY`: Dify API キー
+- `DIFY_TIMEOUT`: API タイムアウト（秒、デフォルト：8）
+
 ## プロジェクト構造
 
 ```

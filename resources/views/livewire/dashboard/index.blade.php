@@ -12,10 +12,9 @@
         <!-- チャットボット -->
         <div class="mb-8">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">チャットで話そう</h2>
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-2 max-w-4xl mx-auto">
                 <livewire:chatbots.mood-coach />
-                <livewire:chatbots.tarot-quick-advisor />
-                <livewire:chatbots.strength-booster />
+                <livewire:chatbots.consultation-bot />
             </div>
         </div>
 
@@ -72,7 +71,7 @@
         </div>
 
         <!-- Mini Content Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <!-- Compatibility -->
             <div class="bg-white dark:bg-zinc-900 rounded-xl sm:rounded-2xl shadow-sm border border-purple-100 dark:border-zinc-700 p-4 sm:p-6">
                 <div class="text-center">
@@ -82,18 +81,6 @@
                     <a href="{{ route('compatibility.chart') }}" class="w-full border border-purple-600 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-colors block">
                         相性を占う
                     </a>
-                </div>
-            </div>
-
-            <!-- Two Choice -->
-            <div class="bg-white dark:bg-zinc-900 rounded-xl sm:rounded-2xl shadow-sm border border-purple-100 dark:border-zinc-700 p-4 sm:p-6">
-                <div class="text-center">
-                    <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🤔</div>
-                    <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-1 sm:mb-2">二者択一占い</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">迷った時の選択をサポート</p>
-                    <button class="w-full border border-purple-600 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-sm font-medium transition-colors">
-                        選択を占う
-                    </button>
                 </div>
             </div>
 

@@ -12,7 +12,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // DIバインド
+        $this->app->bind(
+            \App\Domain\Charts\ChartRepository::class,
+            \App\Domain\Charts\ChartRepositoryEloquent::class
+        );
     }
 
     /**
